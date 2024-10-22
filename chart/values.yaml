@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=./values.schema.json
+
+global:
+  domain: my-sample-java-app.com
+  imagePullSecret:
+    name: docker-registry
+  image:
+    registry: gauravsap
+    tag: latest
+srv:
+  bindings:
+    {}
+  image:
+    repository: my-sample-java-app-srv
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
+  resources:
+    limits:
+      ephemeral-storage: 1G
+      memory: 1G
+    requests:
+      ephemeral-storage: 1G
+      cpu: 1000m
+      memory: 1G
+  health:
+    liveness:
+      path: /actuator/health
+    readiness:
+      path: /actuator/health
