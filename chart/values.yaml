@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=./values.schema.json
-
 global:
   domain: my-sample-java-app.com
   imagePullSecret:
@@ -9,7 +7,8 @@ global:
     tag: latest
 srv:
   bindings:
-    {}
+    destination:
+      serviceInstanceName: 'destination'
   image:
     repository: my-sample-java-app-srv
   env:
@@ -27,3 +26,8 @@ srv:
       path: /actuator/health
     readiness:
       path: /actuator/health
+destination:
+  serviceOfferingName: 'destination'
+  servicePlanName: 'lite'
+  parameters:
+    version: '1.0.0'
